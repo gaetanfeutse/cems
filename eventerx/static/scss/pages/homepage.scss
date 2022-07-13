@@ -1,0 +1,153 @@
+@import "../variables";
+
+.homepage_grid {
+    width: 100%;
+
+    display: grid;
+    gap: $margin_sm;
+    grid-template-columns: 1fr;
+
+    grid-template-areas:
+        "a a a a"
+        "b b b b"
+        "c c c c"
+        "c c c c";
+
+    @media screen and (min-width: $screen_lg) {
+        grid-template-columns: 4fr 4fr 2fr;
+
+        grid-template-areas:
+            "a a a a b b b"
+            "c c c c b b b"
+            "c c c c b b b";
+    }
+
+    .briefing_list {
+        grid-area: a;
+        width: 100%;
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .card {
+            height: 120px;
+            flex-grow: 1;
+            flex-basis: 46%;
+            margin: 2%;
+            text-align: center;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            @media screen and (min-width: $screen_lg) {
+                flex-basis: 23%;
+                margin: 0 1% 0 0; // set the right margin and unset the rest
+            }
+
+            .number {
+                font-size: 2rem;
+                font-weight: bold;
+                margin-bottom: 0.5rem;
+                font-family: "Poppins", sans-serif;
+            }
+
+            .description {
+                font-size: 0.8rem;
+            }
+        }
+    }
+
+    .card_todo {
+        grid-area: b;
+        padding: $default_padding;
+
+        @media screen and (min-width: $screen_lg) {
+            max-width: 350px;
+        }
+
+        .card_todo_item {
+            margin-bottom: $margin_sm;
+            position: relative;
+            padding-left: 1.5rem;
+            font-size: $default_textsize * 0.8;
+
+            &.--completed {
+                text-decoration: line-through;
+                &::before {
+                    background-color: $primary_color;
+                }
+            }
+
+            &::before {
+                content: "";
+                width: 10px;
+                height: 10px;
+                display: block;
+                background-color: gray;
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+                border-radius: 1px;
+            }
+        }
+    }
+
+    .charts_section {
+        grid-area: c;
+        display: flex;
+        flex-direction: column;
+
+        @media screen and (min-width: $screen_md) {
+            flex-direction: row;
+        }
+
+        .card_chart {
+            flex-grow: 1;
+            width: 100%;
+            height: 350px;
+            margin-bottom: 1rem;
+            margin-right: $margin_sm;
+            padding: $padding_sm $default_padding;
+        }
+    }
+}
+
+.active_events {
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: $screen_md) {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow: auto hidden;
+        scroll-behavior: smooth;
+    }
+
+    .card {
+        padding: $default_padding;
+        margin: $margin_sm 0;
+
+        span.detail {
+            color: $primary_color;
+            font-size: $default_textsize;
+
+            span { color: $black; }
+         }
+
+        @media screen and (min-width: $screen_md) {
+            max-width: 350px;
+            min-width: 350px;
+            height: 100%;
+            margin: $margin_sm;
+        }
+
+    }
+
+}

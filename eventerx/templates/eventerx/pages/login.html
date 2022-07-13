@@ -1,0 +1,31 @@
+{% extends "eventerx/forms_layout.html" %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='/css/login.min.css') }}">
+{% endblock %}
+
+{% block main_content %}
+<form action="" method="POST" class="form --full-width">
+
+    {{ form.csrf_token }}
+
+    <div class="input_control">
+        <label for="email">{{ form.email.label }}</label>
+        {{ form.email }}
+    </div>
+
+    <div class="input_control">
+        <label for="password">{{ form.password.label }}</label>
+        {{ form.password }}
+    </div>
+
+    <div class="input_control">
+        <button type="submit" class="button --full-width">Login</button>
+        <a href="{{ url_for('register_school') }}" class="button --full-width --outline">I am a School</a>
+
+    </div>
+
+</form>
+{% endblock %}
+
+

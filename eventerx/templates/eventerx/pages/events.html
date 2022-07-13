@@ -1,0 +1,65 @@
+{% extends 'eventerx/layout.html' %}
+
+{% block main_content %}
+
+<h2>Active events</h2>
+
+<div class="active_events">
+
+    {% for event in events[:3] %}
+    <div class="card event_card">
+        <span class="detail">{{event.due_date.strftime('%d %B, %Y')}}</span>
+        <h2>{{event.title}}</h2>
+        <span class="detail">Venue: <span>{{event.venue}}</span> </span>
+
+        <p class="description">
+            {{ event.description }}
+        </p>
+        <span class="detail">{{event.start_date.strftime('%d %B, %Y')}}</span>
+    </div>
+    {% endfor %}
+
+
+</div>
+
+<hr style="margin: 2rem 0;">
+
+<div class="options">
+    <a href="{{ url_for('add_event') }}" class="button --small">Create an event</a>
+</div>
+
+
+<div class="datatable">
+
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>Event Title</th>
+                <th>Deadline</th>
+                <th>Progress</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+            <tr>
+                <td>{{event.title}}</td>
+                <td>{{event.due_date.strftime('%d %B, %Y')}}</td>
+                <td>
+                    {{ (event.commissions|selectattr("state_id", "equalto", 3)|list|length / (event.commissions|length if event.commissions|length > 0 else 1) * 100)|round }} %
+                </td>
+                <td>
+                    <a href="{{ url_for('event_details', event_id=event.id) }}">details</a>
+                </td>
+                <td><a href="{{url_for('delete_events', id=event.id) }}">delete</a></td>
+                <td><a href="{{ url_for('edite_events', event_id=event.id) }}">edite</a></td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+</div>
+
+
+{% endblock %}

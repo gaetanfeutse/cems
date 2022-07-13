@@ -1,0 +1,52 @@
+// base colors
+$red: red;
+$blue: #0089ff;
+$purple: #89347b;
+$yellow: #ffcc00;
+$green: green;
+$black: #0f0f0f;
+$white: white;
+$orange: #ff7f2a;
+
+// theme colors
+$primary_color: #3aaf9f;
+$primary_gradient: #3fb591;
+$secondary_color: none;
+
+$color_on_primary: $black;
+$color_on_secondary: none;
+
+// more variables
+$default_padding: 2rem;
+$padding_sm: 1rem;
+$padding_lg: 6rem;
+
+$default_margin: 2rem;
+$margin_sm: 1rem;
+$margin_lg: 1rem;
+
+$border_radius: 6px;
+
+$default_textsize: 16px;
+$transition_duration: 300ms;
+
+$heading_margin: 1rem;
+
+// screen sizes for responsive design
+$screen_md: 640px;
+$screen_lg: 1024px;
+
+// form design
+$input_padding: 1rem;
+$input_border_radius: 6px;
+$input_background: #efefef;
+
+
+// button
+$button_padding: 1rem 3rem;
+$button_padding_small: 0.8rem 1.5rem;
+$button_fontsize: $default_textsize * 0.9;
+$button_fontsize_small: $button_fontsize * 0.8;
+$button_radius: 6px;
+$button_margin: 0.5rem 0.5rem 0 0;
+$button_darken_amount: 15;

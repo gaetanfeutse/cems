@@ -1,0 +1,24 @@
+.form_wrapper {
+  background-image: url("/static/images/login_bg.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow: auto;
+}
+
+.form_wrapper input {
+  background-color: #dfdfdf !important;
+}
+
+@media screen and (min-width: 640px) {
+  .form_wrapper .form {
+    width: 65%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .form_wrapper .form {
+    width: 35%;
+  }
+}
+/*# sourceMappingURL=register.css.map */

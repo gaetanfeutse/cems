@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAGA,AAAA,aAAa,CAAC;EACV,gBAAgB,EAAE,kCAAkC;EACpD,eAAe,EAAE,KAAK;EACtB,mBAAmB,EAAE,MAAM;EAC3B,qBAAqB,EAAE,KAAK;EAE5B,QAAQ,EAAE,IAAI;CAkBjB;;AAxBD,AAQI,aARS,CAQT,KAAK,CAAC;EACF,gBAAgB,EAAE,OAAkB,CAAC,UAAU;CAClD;;AAED,MAAM,CAAC,MAAM,MAAM,SAAS,EAAE,KAAK;EAZvC,AAaQ,aAbK,CAaL,KAAK,CAAC;IACF,KAAK,EAAE,GAAG;GACb;;;AAGL,MAAM,CAAC,MAAM,MAAM,SAAS,EAAE,MAAM;EAlBxC,AAmBQ,aAnBK,CAmBL,KAAK,CAAC;IACF,KAAK,EAAE,GAAG;GACb",
+    "sources": [
+        "../scss/pages/register.scss",
+        "../scss/_variables.scss"
+    ],
+    "names": [],
+    "file": "register.css"
+}

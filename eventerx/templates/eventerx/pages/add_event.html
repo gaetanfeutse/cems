@@ -1,0 +1,56 @@
+{% extends 'eventerx/layout.html' %}
+
+{% block main_content %}
+
+<div class="card form-wrapper" style="max-width: 900px">
+
+    <h1>Create an Event</h1>
+
+    <form action="" class="form --full-width" method="POST">
+
+        <div class="input_control">
+            <label for="title">{{ form.title.label }}</label>
+            {{ form.title }}
+        </div>
+
+        <div class="input_control">
+            <label for="venue">{{ form.venue.label }}</label>
+            {{ form.venue }}
+        </div>
+
+        <div class="input_control">
+            <label for="budget">{{ form.budget.label }}</label>
+            {{ form.budget(type="number", value="0") }}
+        </div>
+
+        <div class="input_group">
+            <div class="input_control">
+                <label for="start_date">{{ form.start_date.label }}</label>
+                {{ form.start_date(type="date") }}
+            </div>
+            <div class="input_control">
+                <label for="due_date">{{ form.due_date.label }}</label>
+                {{ form.due_date(type="date") }}
+            </div>
+        </div>
+
+        <div class="input_control">
+            <label for="description">{{ form.description.label }}</label>
+            {{ form.description }}
+        </div>
+
+        <div class="switch_control">
+            <label class="switch" for="is_private">
+                {{ form.is_private(class="switch_control_input") }}
+                <span class="slider"></span>
+            </label>
+            {{ form.is_private.label }}
+        </div>
+
+        <button type="submit" class="button --full-width">Create event</button>
+
+    </form>
+</div>
+
+
+{% endblock %}

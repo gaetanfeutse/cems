@@ -1,0 +1,19 @@
+{
+    "liveSassCompile.settings.autoprefix": [
+        "> 1%",
+        "last 2 versions"
+    ],
+    "liveSassCompile.settings.formats": [
+        {
+            "format": "expanded",
+            "extensionName": ".css",
+            "savePath": "/eventerx/static/css/"
+        },
+        {
+            "format": "compressed",
+            "extensionName": ".min.css",
+            "savePath": "/eventerx/static/css/"
+        }
+    ],
+    "python.pythonPath": "venv\\Scripts\\python.exe"
+}

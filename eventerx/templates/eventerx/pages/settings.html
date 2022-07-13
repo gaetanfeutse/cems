@@ -1,0 +1,72 @@
+{% extends 'eventerx/layout.html' %}
+
+{% block main_content %}
+
+<div class="card">
+
+    <h3>User profile</h3>
+
+    <hr>
+
+    <div class="tabular_list_items">
+        {% if current_user.role.id != 2 %}
+        <div class="list_item">
+            <span class="title">First name</span>
+            <span class="value">{{ current_user.first_name }}</span>
+        </div>
+
+        <div class="list_item">
+            <span class="title">last name</span>
+            <span class="value">{{ current_user.last_name }}</span>
+        </div>
+        
+        {% else %}
+        <div class="list_item">
+            <span class="title">School Name</span>
+            <span class="value">{{ school.name }}</span>
+        </div>
+        <div class="list_item">
+            <span class="title">School Addresses</span>
+            <span class="value">{{ school.address1 }} </span>
+            <span class="value">{{ school.address2 if school.adderss2 else "" }} </span>
+        </div>
+        <div class="list_item">
+            <span class="title">Phone Number</span>
+            <span class="value">{{ school.phone }} </span>
+        </div>
+        <div class="list_item">
+            <span class="title">PO Box</span>
+            <span class="value">{{ school.pobox }} </span>
+        </div>
+        <div class="list_item">
+            <span class="title">website</span>
+            <span class="value">{{ school.website }} </span>
+        </div>
+        {% endif %}
+        
+        <div class="list_item">
+            <span class="title">email</span>
+            <span class="value">{{ current_user.email }}</span>
+        </div>
+        <div class="list_item">
+            <span class="title">password</span>
+            <span class="value">
+                **************
+                ( <a href="$">change</a>  )
+            </span>
+        </div>
+        <div class="list_item">
+            <span class="title">Role</span>
+            <span class="value">{{ current_user.role.name.title() }}</span>
+        </div>
+
+
+    </div>
+
+    <p style="padding-left: 1rem;">
+        <a href="{{ url_for('logout') }}" class="button --danger --outline --small">Logout</a>
+    </p>
+
+</div>
+
+{% endblock %}

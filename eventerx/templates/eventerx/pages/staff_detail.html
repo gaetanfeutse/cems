@@ -1,0 +1,54 @@
+{% extends 'eventerx/layout.html' %}
+
+{% block main_content %}
+
+    <div class="card">
+
+        <h3>User profile</h3>
+
+        <hr>
+
+        <div class="tabular_list_items">
+
+            <div class="list_item">
+                <span class="title">Matricule</span>
+                <span class="value">{{ staff.matricule }}</span>
+            </div>
+
+            <div class="list_item">
+                <span class="title">First name</span>
+                <span class="value">{{ staff_user.first_name }}</span>
+            </div>
+
+            <div class="list_item">
+                <span class="title">last name</span>
+                <span class="value">{{ staff_user.last_name }}</span>
+            </div>
+
+            <div class="list_item">
+                <span class="title">email</span>
+                <span class="value">{{ staff_user.email }}</span>
+            </div>
+
+            <div class="list_item">
+                <span class="title">phone</span>
+                <span class="value">{{ staff.phone }}</span>
+            </div>
+
+            <div class="list_item">
+                <span class="title">Team</span>
+                <span class="value">{{ staff.team.title if staff.team_id else "Not in a team" }}</span>
+            </div>
+
+        </div>
+
+        {% if current_user.role_id == 2 %}
+        <p style="padding-left: 1rem;">
+            <a href="{{ url_for('make_staff_manager', staff_id=staff.matricule)  }}" class="button --small --outline">Make {{ staff_user.fullname }} a Manager</a>
+        </p>
+        {% endif %}
+        
+
+    </div>
+
+{% endblock %}

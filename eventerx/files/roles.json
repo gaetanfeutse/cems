@@ -1,0 +1,10 @@
+{
+    "roles": [
+        {  "id": 1, "name": "sys_admin" },
+        {  "id": 2, "name": "school" },
+        {  "id": 3, "name": "manager" },
+        {  "id": 4, "name": "student" },
+        {  "id": 5, "name": "attendee" },
+        {  "id": 6, "name": "staff" }
+    ]
+}

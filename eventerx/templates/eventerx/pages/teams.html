@@ -1,0 +1,75 @@
+{% extends 'eventerx/layout.html' %}
+
+{% block modals_block %}
+
+<div class="modal" id="team_modal">
+    <div class="card modal_card">
+
+        <h3 style="text-align: center;">Create a team</h3>
+
+        <form action="" method="POST" class="form --full-width">
+
+            <div class="input_control">
+                <label for="title">{{form.title.label}}</label>
+                {{ form.title }}
+            </div>
+
+            <div class="input_control">
+                <label for="members">{{form.members.label}} (Hold <kbd>Ctrl</kbd> to select multiple)</label>
+                {{ form.members }}
+            </div>
+
+            <div class="input_control">
+                <label for="commission_id">{{form.commissions.label}} (Hold <kbd>Ctrl</kbd> to select multiple)</label>
+                {{ form.commissions }}
+            </div>
+        
+            <button type="submit" class="button --small" data-modal="#team_modal">Create team</button>
+            <button type="button" class="button --small --outline modal_invoke" data-modal="#team_modal">Cancel</button>
+        
+        </form>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block main_content %}
+
+<button class="button modal_invoke" data-modal="#team_modal">Create a team</button>
+
+<div class="datatable">
+
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Creation Date</th>
+                <th>Members Count</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            
+        {% for team in teams %}
+            <tr>
+                <td>{{ team.id }}</td>
+                <td>{{ team.title }}</td>
+                <td>{{ team.created_on.strftime('%d %B %Y') }}</td>
+                <td>{{ team.staff_members|length }}</td>
+                <td style="max-width: 50px;">
+                    <a href="#">details</a>
+                </td>
+                <td><a href="{{url_for('delete_team', id=team.id) }}">delete</a></td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+    
+{% endblock %}

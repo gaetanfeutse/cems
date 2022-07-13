@@ -1,0 +1,7 @@
+{
+    "states" : [
+        { "id": 1, "name": "Planned" },
+        { "id": 2, "name": "Ongoing" },
+        { "id": 3, "name": "Completed" }
+    ]
+}

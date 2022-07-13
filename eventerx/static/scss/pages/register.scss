@@ -1,0 +1,28 @@
+@import "../variables";
+
+
+.form_wrapper {
+    background-image: url("/static/images/login_bg.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    overflow: auto;
+
+    input {
+        background-color: rgb(223, 223, 223) !important;
+    }
+    
+    @media screen and (min-width: $screen_md) {
+        .form {
+            width: 65%;
+        }
+    }
+
+    @media screen and (min-width: $screen_lg) {
+        .form {
+            width: 35%;
+        }
+    }
+
+}

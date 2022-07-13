@@ -1,0 +1,74 @@
+{% extends "eventerx/forms_layout.html" %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/register.min.css') }}">
+{% endblock %}
+
+{% block main_content %}
+
+{% for category, message in get_flashed_messages(with_categories=true) %}
+<div class="alert alert--{{category}}">
+    {{ message }}
+</div>
+{% endfor %}
+
+<form action="" method="POST" class="form --full-width">
+
+    <div class="input_control">
+        <label for="name">{{form.name.label}}</label>
+        {{ form.name }}
+    </div>
+
+
+    <div class="input_control">
+        <label >{{form.phone_number.label}}</label>
+        {{ form.phone_number }}
+    </div>
+
+
+    <div class="input_group">
+
+        <div class="input_control">
+            <label for="address1">{{form.address1.label}}</label>
+            {{ form.address1 }}
+        </div>
+
+        <div class="input_control">
+            <label for="address2">{{form.address2.label}}</label>
+            {{ form.address2 }}
+        </div>
+
+    </div>
+
+    <div class="input_control">
+        <label for="pobox">{{form.pobox.label}}</label>
+        {{ form.pobox }}
+    </div>
+
+    <div class="input_control">
+        <label for="email">{{form.email_address.label}}</label>
+        {{ form.email_address }}
+    </div>
+
+    <div class="input_control">
+        <label for="website">{{form.website.label}}</label>
+        {{ form.website }}
+    </div>
+
+    <div class="input_control">
+        <label for="password">{{form.password.label}}</label>
+        {{ form.password }}
+    </div>
+
+    <div class="checbox_control">
+        <input type="checkbox" name="" id="agreement" required>
+        <label for="agreement">I have read and I agree with the <a href="#">terms and conditions</a> for using this
+            platform</label>
+    </div>
+
+    <div class="input_control">
+        <button class="button --full-width">Register School</button>
+    </div>
+
+</form>
+{% endblock %}

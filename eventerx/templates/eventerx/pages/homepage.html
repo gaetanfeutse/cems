@@ -1,0 +1,110 @@
+{% extends 'eventerx/layout.html' %}
+
+{% block main_content %}
+
+{% for category, message in get_flashed_messages(with_categories=true) %}
+    <div class="alert alert--{{category}}">
+        {{ message }}
+    </div>
+{% endfor %}
+
+<div class="homepage_grid">
+
+
+    {% if current_user.role_id == 3 or current_user.role_id == 2 %}
+    <!-- the briefing cards section -->
+    <div class="briefing_list">
+
+        <div class="card cards_briefing">
+            <p class="number">0</p>
+            <p class="description">Total Tasks</p>
+        </div>
+        <div class="card cards_briefing">
+            <p class="number">0</p>
+            <p class="description">Uncompleted Tasks</p>
+        </div>
+        <div class="card cards_briefing">
+            <p class="number">0</p>
+            <p class="description">Staff Members</p>
+        </div>
+        <div class="card cards_briefing">
+            <p class="number">0</p>
+            <p class="description">Active Teams</p>
+        </div>
+
+    </div>
+
+    <div class="charts_section">
+
+        <div class="card card_chart" id="lineChart">
+            <h3>Daily Tasks' reports</h3>
+        </div>
+
+        <div class="card card_chart" id="pieChart">
+            <h3>Budget Allocation</h3>
+        </div>
+
+    </div>
+    {% endif %}
+
+    {% if current_user.role_id == 3 %}
+        <div class="card card_todo">
+
+            <h3>To do list</h3>
+
+            {% for task in tasks %}
+                <div class="card_todo_item --completed">
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+            {% endfor %}
+
+        </div>
+    {% endif %}
+
+
+
+</div>
+
+{% if current_user.role_id == 3 or current_use %}
+<section class="event_planning">
+
+    <h2>Current Events</h2>
+
+    <div class="datatables">
+        <table class="table table--fullsize">
+
+            <thead>
+                <tr>
+                    <th>Event Title</th>
+                    <th>Deadline</th>
+                    <th>Progress</th>
+                    <th>Lead</th>
+                    <th>Team</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Graduation Ceremony</td>
+                    <td>12th September 2021</td>
+                    <td>12%</td>
+                    <td>John D</td>
+                    <td>Team 7</td>
+                    <td>
+                        <a href="#">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+</section>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,236 @@
+@import "variables";
+@import "base";
+@import "grid";
+
+.sidenav {
+    background-image: url("/static/images/sidebar_bg.png"), linear-gradient($primary_color, $primary_gradient);
+    background-position: right;
+    background-size: auto;
+    background-repeat: no-repeat;
+    padding: 3rem 0.5rem;
+
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: 500ms cubic-bezier(1, 0.0, 0, 1.0);
+
+    // for devices smaller than a tablet
+    @media screen and (max-width: $screen_md) {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        transform: translateX(-100%);
+
+        &.--shown {
+            transform: translateX(0%);
+        }
+    }
+
+    @media screen and (min-width: $screen_md) {
+        align-items: center;
+    }
+
+    .close_button {
+        display: block;
+        color: black;
+        font-size: $default_textsize;
+        color: $black;
+        padding: $default_padding * 0.5;
+
+        @media screen and (min-width: $screen_md) {
+            display: none;
+        }
+    }
+
+    &__item {
+        width: 100%;
+        margin: 0.2rem 0;
+        padding: $padding_sm * 0.6;
+        text-align: left;
+        border-radius: $border_radius;
+        color: $color_on_primary;
+        cursor: pointer;
+        transition: 300ms;
+
+        &.--active {
+            background-color: #00000046;
+            color: white;
+
+            &:hover {
+                background-color: #00000046;
+            }
+
+            @media screen and (min-width: $screen_md) {
+                span {
+                    height: 1rem;
+                }
+            }
+        }
+        
+        &.mobile_only {
+            @media screen and (min-width: $screen_md) {
+                display: none;
+            }
+        }
+
+        &:hover {
+            background-color: #00000023;
+            color: white;
+        }
+
+        @media screen and (min-width: $screen_md) {
+            text-align: center;
+
+            &:hover > span {
+                height: 1rem;
+            }
+        }
+
+        span {
+            margin-left: $margin_sm * 0.5;
+
+            // on tablets and larger devides
+            @media screen and (min-width: $screen_md) {
+                display: block;
+                height: 0;
+                overflow: hidden;
+                margin: $margin_sm 0 0 0;
+                font-size: $default_textsize * 0.8;
+                transition: height 150ms ease-in;
+            }
+        }
+
+        i.icon {
+            // on tablets and larger devides
+            @media screen and (min-width: $screen_md) {
+                display: block;
+                margin-top: $margin_sm * 0.5;
+                font-size: $default_textsize * 1.7;
+            }
+        }
+    }
+}
+
+.main_section {
+
+    overflow: hidden auto;
+    position: relative;
+
+    .top_panel {
+        height: 8%;
+        width: 100%;
+        padding: $padding_sm $default_padding;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .school_name {
+            font-family: "Poppins", sans-serif;
+            font-weight: bold;
+            font-size: 1.5rem;
+            user-select: none;
+            cursor: pointer;
+            color: $black;
+
+            max-width: 250px;
+            padding: 0 1rem;
+
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+
+            @media screen and (min-width: $screen_md) {
+                max-width: none;
+            }
+        }
+
+        .mobile_only {
+            display: inline-block;
+            @media screen and (min-width: $screen_md) {
+                display: none;
+            }
+        }
+
+        .left_options {
+            display: none;
+
+            @media screen and (min-width: $screen_md) {
+                display: block;
+
+                a {
+                    color: gray;
+                    font-size: 1.2rem;
+                    transition: 300ms;
+                    padding: $padding_sm * 0.2 $padding_sm;
+                    border-radius: $border_radius;
+                    background-color: transparent;
+                    text-align: center;
+                    margin: 0 $default_margin * 0.1;
+
+                    &:hover {
+                        background-color: $primary_color;
+                        color: $color_on_primary;
+                        padding: ($padding_sm * 0.9) ($padding_sm + 0.4rem);
+                    }
+                }
+            }
+        }
+    }
+
+    .main_content {
+        height: 92%;
+        padding: $default_padding;
+        background-color: #efefef;
+        overflow: hidden auto;
+
+        background-image: url("/static/images/body_bg.png");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        
+    }
+}
+
+.centered_form {
+    width: 100%;
+    position: absolute;
+    left: 50%; 
+    transform: translate(-50%);
+
+    h1 {
+        text-align: center;
+    }
+
+    @media screen and (min-width: $screen_md) {
+        width: 400px;
+    }
+    @media screen and (min-width: $screen_lg) {
+        width: 450px;
+    }
+}
+.form_wrapper {
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    @media screen and (min-width: $screen_md) {
+        .form {
+            width: 45%;
+        }
+    }
+
+    @media screen and (min-width: $screen_lg) {
+        .form {
+            width: 25%;
+        }
+    }
+
+}

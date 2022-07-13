@@ -1,0 +1,64 @@
+{% extends 'eventerx/layout.html' %}
+
+{% block main_content %}
+
+
+{% if invitation_url %}
+<div class="alert --small">
+    <h3>Invitation Link</h3>
+    <p>
+        Use the invitation link below to invite students to register <br>
+    </p>
+    <p>
+        <b>{{ invitation_url }}</b>
+        <a href="#" class="color_on_primary --underlined">(refresh)</a> ||
+        <a href="#" class="color_on_primary --underlined">(delete)</a>
+    </p>
+</div>
+
+{% else %}
+
+<p class="alert --small">
+    Click to generate a link and invite your students to register. Registered students will appear on the table below
+</p>
+
+<a href="{{ url_for('generate_link', purpose='students') }}" class="button --small">Generate link</a>
+
+{% endif %}
+
+<div class="datatable">
+
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>Matricule</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Speciality</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for student in students %}
+            <tr>
+                <td>{{ student.matricule }}</td>
+                <td>{{ student.user.first_name }}</td>
+                <td>{{ student.user.last_name }}</td>
+                <td>{{ student.speciality }}</td>
+                <td style="max-width: 50px;">
+                    <a href="#">details</a>
+                </td>
+                <td><a href="{{url_for('delete_student', id=student.user.id) }}">delete</a></td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

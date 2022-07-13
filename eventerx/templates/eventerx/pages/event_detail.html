@@ -1,0 +1,85 @@
+{% extends 'eventerx/layout.html' %}
+
+{% block main_content %}
+
+    <div class="card">
+
+        <h3>Event Details</h3>
+
+        <hr>
+
+        <div class="tabular_list_items">
+
+            <div class="list_item">
+                <span class="title">Event Title</span>
+                <span class="value">{{ event.title.title() }}</span>
+            </div>
+
+            <div class="list_item">
+                <span class="title">Venue</span>
+                <span class="value">{{ event.venue.title() }}</span>
+            </div>
+
+            <div class="list_item">
+                <span class="title">Budget</span>
+                <span class="value">{{ event.budget }}</span>
+            </div>
+
+            <div class="list_item">
+                <span class="title">Description</span>
+                <p class="value">{{ event.description }}</p>
+            </div>
+            
+            <div class="list_item">
+                <span class="title">Duration</span>
+                <span class="value">
+                    <b>{{ event.start_date.strftime('%d %B %Y') }}</b> to 
+                    <b>{{ event.due_date.strftime('%d %B %Y') }}</b>
+                </span>
+            </div>
+
+            <div class="list_item">
+                <span class="title">Status</span>
+                <span class="value">
+                    {{ "Ongoing" if event.is_active > 0 else "Terminated" }}
+                </span>
+            </div>
+
+        </div>
+
+        <br>  <hr>
+
+        <h3>Event Stats</h3>
+
+        <div class="tabular_list_items">
+
+            <div class="list_item">
+                <span class="title">Commissions count </span>
+                <span class="value">{{ event.commissions|length }}</span>
+            </div>
+            
+            <div class="list_item">
+                <span class="title">Completed Commissions</span>
+                <span class="value">
+                    {{ event.commissions|selectattr('state_id', "equalto", 3)|list|length }}
+                </span>
+            </div>
+
+            <div class="list_item">
+                {# the completion is calculated as the quantity of completed tasks over total tasks time 100 #}
+                <span class="title">Event Progress</span>
+                <span class="value">
+                    {{ event.commissions|selectattr('state_id', "equalto", 3)|list|length / (event.commissions|length if event.commissions|length > 0 else 1) * 100 }} %
+                </span>
+            </div>
+            
+            <div class="list_item">
+                <a href="{{ url_for('tasks', event_id=event.id) }}" class="button">Task Manager</a href="#">
+            </div>
+
+        </div>
+
+
+    </div>
+
+{% endblock %}

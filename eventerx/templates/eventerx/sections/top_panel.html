@@ -1,0 +1,19 @@
+<i class="mobile_only fa fa-bars" onclick='document.querySelector("#sideNav").classList.toggle("--shown");'></i>
+
+<div class="school_name">{{ school.name if school else "CEMS" }}</div>
+
+<i class="mobile_only fa fa-bell"></i>
+
+<div class="left_options">
+    
+    {% if current_user.role.id >= 1 %}
+        <a href="{{ url_for('chat') }}">
+            <i class="fa fa-comment-alt"></i>
+        </a>
+    {% endif %}
+
+    <a href="#">
+        <i class="fa fa-bell"></i>
+    </a>
+    
+</div>

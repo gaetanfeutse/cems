@@ -1,0 +1,54 @@
+{
+    "countries": [
+        {
+            "name": "Cameroon",
+            "towns": [
+                {
+                    "name": "Yaounde"
+                },
+                {
+                    "name": "Douala"
+                },
+                {
+                    "name": "Bamenda"
+                },
+                {
+                    "name": "Bafoussam"
+                },
+                {
+                    "name": "Bangangte"
+                },
+                {
+                    "name": "Garoua"
+                },
+                {
+                    "name": "Maroua"
+                },
+                {
+                    "name": "Bertoua"
+                },
+                {
+                    "name": "Ngaoundere"
+                },
+                {
+                    "name": "Kaele"
+                },
+                {
+                    "name": "Yagoua"
+                },
+                {
+                    "name": "Ebolowa"
+                },
+                {
+                    "name": "Buea"
+                },
+                {
+                    "name": "Edea"
+                },
+                {
+                    "name": "Dschang"
+                }
+            ]
+        }
+    ]
+}

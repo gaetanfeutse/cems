@@ -1,0 +1,170 @@
+{% extends 'eventerx/layout.html' %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/tasks.min.css') }}">
+{% endblock %}
+
+{% block modals_block %}
+<div class="modal" id="task_modal">
+    <div class="card modal_card">
+        <h3 style="text-align: center;">Create a task</h3>
+        <form action="" method="POST" class="form --full-width">
+
+            <div class="input_control">
+                <label for="title">{{ form.title.label }}</label>
+                {{ form.title }}
+            </div>
+
+            <div class="input_control">
+                <label for="description">{{ form.description.label }}</label>
+                {{ form.description }}
+            </div>
+
+            <div class="input_group">
+                <div class="input_control">
+                    <label for="start_date">{{ form.start_date.label }}</label>
+                    {{ form.start_date(type='date') }}
+                </div>
+                <div class="input_control">
+                    <label for="due_date">{{ form.due_date.label }}</label>
+                    {{ form.due_date(type='date') }}
+                </div>
+            </div>
+
+            <div class="input_group">
+                <div class="input_control">
+                    <label for="priority">{{ form.priority.label }}</label>
+                    {{ form.priority }}
+                </div>
+                <div class="input_control">
+                    <label for="state">{{ form.state.label }}</label>
+                    {{ form.state }}
+                </div>
+            </div>
+
+            <div class="input_control">
+                <button type="submit" class="button --small">Create task</button>
+                <button type="button" class="button --small --outline modal_invoke"
+                    data-modal="#task_modal">Cancel</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block main_content %}
+
+<p>
+    <button class="button --small modal_invoke" data-modal="#task_modal">create a task</button>
+</p>
+
+<div class="kanban_board">
+
+    <div class="card card_panel planned">
+
+        <h2>Planned</h2>
+
+        <div class="drop_zone" id="plannedCommissionsDropzone" ondrop="drop(event)" ondragover="allowDrop(event)" data-state="1">
+            {# planned task #}
+            {% for commission in commissions %}
+            {% if commission.state_id==1 %}
+            <div class="card panel_card" id="{{ commission.id }}" draggable="true" ondragstart="drag(event)">
+                <p class="title">{{commission.title}}</p>
+                <p class="content">
+                    {{commission.description}}
+                </p>
+                {% set priority ='high' if commission.priority == 3 else 'medium' if commission.priority == 2 else 'low'
+                %}
+                <span class="priority --{{ priority }}">
+                    {{ priority }}
+                </span>
+                <a href="#">details</a>
+            </div>
+            {% endif %}
+
+            {% endfor %}
+        </div>
+
+    </div>
+
+    <div class="card card_panel ongoing">
+        <h2>Ongoing</h2>
+
+        <div class="drop_zone" id="ongoingCommissionsDropzone" ondrop="drop(event)" ondragover="allowDrop(event)" data-state="2">
+            {# ongoing task #}
+            {% for commission in commissions %}
+            {% if commission.state_id==2 %}
+            <div class="card panel_card" id="{{ commission.id }}" draggable="true" ondragstart="drag(event)">
+                <p class="title">{{commission.title}}</p>
+                <p class="content">
+                    {{commission.description}}
+                </p>
+                {% set priority ='high' if commission.priority == 3 else 'medium' if commission.priority == 2 else 'low'
+                %}
+                <span class="priority --{{ priority }}">
+                    {{ priority }}
+                </span>
+                <a href="#">details</a>
+            </div>
+            {% endif %}
+
+            {% endfor %}
+        </div>
+
+    </div>
+
+    <div class="card card_panel completed">
+
+        <h2>Completed</h2>
+
+        <div class="drop_zone" id="completedCommissionsDropzone" ondrop="drop(event)" ondragover="allowDrop(event)" data-state="3">
+        {# completed task #}
+        {% for commission in commissions %}
+        {% if commission.state_id==3 %}
+        <div class="card panel_card" id="{{ commission.id }}" draggable="true" ondragstart="drag(event)">
+            <p class="title">{{commission.title}}</p>
+            <p class="content">
+                {{commission.description}}
+            </p>
+            {% set priority ='high' if commission.priority == 3 else 'medium' if commission.priority == 2 else 'low' %}
+            <span class="priority --{{ priority }}">
+                {{ priority }}
+            </span>
+            <a href="#">details</a>
+        </div>
+        {% endif %}
+        
+        {% endfor %}
+          
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block page_js %}
+
+<script>
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        if (ev.target.classList.contains('drop_zone')) {
+            ev.target.appendChild(document.getElementById(data));
+        }
+        
+    }
+</script>
+
+{% endblock %}

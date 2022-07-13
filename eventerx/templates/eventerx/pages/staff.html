@@ -1,0 +1,64 @@
+{% extends 'eventerx/layout.html' %}
+
+{% block main_content %}
+
+{% if invitation_url %}
+<div class="alert --small">
+    <h3>Invitation Link</h3>
+    <p>
+        Use the invitation link below to invite staff members to register <br>
+    </p>
+    <p>
+        <b>{{ invitation_url }}</b> 
+        <a href="#" class="color_on_primary --underlined">(refresh)</a> || 
+        <a href="#" class="color_on_primary --underlined">(delete)</a>
+    </p>
+</div>
+
+{% else %}
+<p class="alert --small">
+    Click to generate a link and invite your staff members to register themselves.
+</p>
+
+<a href="{{ url_for('generate_link', purpose='staff') }}" class="button --small">Generate link</a>
+{% endif %}
+
+
+<div class="datatable">
+
+    <table class="table">
+
+        <thead>
+            <tr>
+                <td>Matricule</td>
+                <td>First name</td>
+                <td>Last name</td>
+                <td>Phone</td>
+                <td>Manager</td>
+                <td>Date added</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for staff in staff_members %}
+            <tr>
+                <td>{{staff.matricule}}</td>
+                <td>{{staff.user.first_name}}</td>
+                <td>{{staff.user.last_name}}</td>
+                <td>{{staff.phone}}</td>
+                <td>{{ 'Yes' if staff.user.role.id == 3 else 'No' }}</td>
+                <td>{{staff.created_on.strftime("%d/%m/%Y")}}</td>
+                <td>
+                    <a href="{{url_for('staff_member_details', staff_id=staff.matricule) }}">details</a>
+                </td>
+                <td><a href="{{url_for('delete_staff_member', id=staff.user.id) }}">delete</a></td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

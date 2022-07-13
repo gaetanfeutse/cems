@@ -1,0 +1,49 @@
+<a href="javascript:void(0)" class="close_button">
+    <i class="fa fa-times" onclick='document.querySelector("#sideNav").classList.toggle("--shown");'></i>
+</a>
+
+<a href="{{ url_for('homepage') }}" class="sidenav__item {{ '--active' if page.title.lower() == 'dashboard' }}">
+    <i class="icon fa fa-chart-pie"></i>
+    <span class="description">Dashboard</span>
+</a>
+
+{% if current_user.role.id == 3 %}
+<a href="{{ url_for('events') }}" class="sidenav__item {{ '--active' if page.title.lower() == 'events' }}">
+    <i class="icon fa fa-clock"></i>
+    <span class="description">Events</span>
+</a>
+{% endif %}
+
+{% if current_user.role.id == 2 or current_user.role.id == 3 %}
+<a href="{{ url_for('staff') }}" class="sidenav__item {{ '--active' if page.title.lower() == 'staff' }}">
+    <i class="icon fa fa-users"></i>
+    <span class="description">Staff</span>
+</a>
+{% endif %}
+
+
+{% if current_user.role.id == 3 %}
+<a href="{{ url_for('teams') }}" class="sidenav__item {{ '--active' if page.title.lower() == 'teams' }}">
+    <i class="icon fa fa-user-circle"></i>
+    <span class="description">Teams</span>
+</a>
+
+<a href="{{ url_for('students') }}" class="sidenav__item {{ '--active' if page.title.lower() == 'students' }}">
+    <i class="icon fa fa-book"></i>
+    <span class="description">Students</span>
+</a>
+{% endif %}
+
+
+{% if current_user.role.id >= 3 %}
+<a href="{{ url_for('chat') }}" class="sidenav__item {{ '--active' if page.title.lower() == 'messages' }} mobile_only">
+    <i class="icon fa fa-comment-alt"></i>
+    <span class="description">Messages</span>
+</a>
+{% endif %}
+
+
+<a href="{{ url_for('settings') }}" class="sidenav__item {{ '--active' if page.title.lower() == 'settings' }}">
+    <i class="icon fa fa-cogs"></i>
+    <span class="description">Settings</span>
+</a>
